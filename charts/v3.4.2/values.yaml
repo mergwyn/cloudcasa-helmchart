@@ -2,3 +2,6 @@
 
 ## CloudCasa Cluster ID. To be provided by the user.
 cluster_id: ""
+
+## Secretname containing CloudCasa Cluster ID. If set will be used in preference to cluster_id
+secretName: ""

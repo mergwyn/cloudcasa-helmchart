@@ -78,7 +78,14 @@ items:
               fieldRef:
                 fieldPath: metadata.name
           - name: AMDS_CLUSTER_ID
+            {{ if .Values.secretName }}
+            valueFrom:
+              secretKeyRef:
+               key: cluster_id
+               name: {{ .Values.secretName }}
+            {{ else }}
             value: {{ .Values.cluster_id }}
+            {{ end }}
           - name: KUBEMOVER_IMAGE
             value: catalogicsoftware/amds-kagent:3.1.0-prod
           - name: DEPLOYMENT_PLATFORM

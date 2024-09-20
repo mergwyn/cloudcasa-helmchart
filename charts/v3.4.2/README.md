@@ -49,4 +49,28 @@ This will install the CloudCasa agent and complete registration of the cluster w
     ```    
     $ helm uninstall cloudcasa
     ```
+
+## Using a secret for cluster_id
+
+It is also possible to use a secret to pass the ```cluster_id``` into the chart. In this case provide the name of the secret to be used in the values file:
+    ``` 
+    secretName: name_of_secret to be used
+    ```
+
+The secret should be similar to:
+
+    ```
+    apiVersion: v1
+    stringData:
+      cluster_id: <Cluster ID>
+    kind: Secret
+    metadata:
+      labels:
+	app: cloudcasa-kubeagent-manager
+      name: cloudcasa-clusterid
+      namespace: velero
+    type: Opaque
+    ```
+If set, ```secretName``` will be used in preference to ```cluster_id```
+
 *CloudCasa is a trademark of Catalogic Software Inc.*
